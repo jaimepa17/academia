@@ -2,7 +2,7 @@
 // Archivo de entrada principal y router
 
 // Cargar configuración y rutas
-require_once '../config.php';
+require_once '../config/config.php';
 require_once '../routes.php';
 
 // Obtener la URL solicitada (parámetro 'url' en GET)

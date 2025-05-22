@@ -13,6 +13,7 @@ $routes = [
     // Autenticación
     'login' => ['controller' => 'login', 'action' => 'index'],
     //'login/{param}' => ['controller' => 'login', 'action' => 'index'],
+    'login/auth' => ['controller' => 'login', 'action' => 'auth'],
     
     'logout' => ['controller' => 'login', 'action' => 'logout'],
 

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,6 +68,10 @@
     Bienvenido a <span><?=APP_NAME;?></span>
   </div>
     <?php
+      if (isset($_SESSION['login_error'])) {
+        echo '<div style="color:red;text-align:center;margin:10px 0;">'.$_SESSION['login_error'].'</div>';
+        unset($_SESSION['login_error']);
+      }
       require_once __DIR__ . '/templates/form_login.php';
     ?>
 </body>

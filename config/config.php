@@ -5,7 +5,8 @@ define('USUARIO','postgres');
 define('PASSWORD','123');
 define('BD','sisgestionescolar');
 
-define('APP_NAME','Sistema Academico ');
+define('APP_NAME',' Académico');
+
 define('APP_URL','http://localhost/academia');
 define('KEY_API_MAPS','');
 
