@@ -2,8 +2,6 @@
 ob_start();
 require_once dirname(__DIR__) . '/config/config.php';
 
-session_start();
-
 class login {
     public function index($params = []) {
         require_once dirname(__DIR__) . '/views/login/templates/form_login.php';

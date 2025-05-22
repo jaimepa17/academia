@@ -3,7 +3,7 @@
 
 // Cargar configuración y rutas
 require_once '../config/config.php';
-require_once '../routes.php';
+require_once '../routes/routes.php';
 
 // Obtener la URL solicitada (parámetro 'url' en GET)
 $url = isset($_GET['url']) ? $_GET['url'] : '';

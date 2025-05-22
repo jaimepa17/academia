@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# Redirige todo excepto carpetas y archivos existentes hacia /public
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteCond %{REQUEST_URI} !^/app/
+RewriteCond %{REQUEST_URI} !^/config/
+RewriteCond %{REQUEST_URI} !^/controllers/
+RewriteCond %{REQUEST_URI} !^/database/
+RewriteCond %{REQUEST_URI} !^/views/
+RewriteCond %{REQUEST_URI} !^/routes.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ public/$1 [L]
