@@ -1,31 +1,24 @@
 <?php
 ob_start();
-require_once dirname(__DIR__) . '/config/config.php';
+require_once __DIR__ . '/../app/core/AuthService.php';
 
-class login {
+class login extends BaseController {
     public function index($params = []) {
         require_once dirname(__DIR__) . '/views/login/templates/form_login.php';
     }
 
     public function auth() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        try {
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
+            $authService = new AuthService();
             
-            // Verificar conexión a la base de datos
-            $pdo = DB::connect();
-            // var_dump($pdo); // Solo para debug, comentar en producción
-            
-            $sql = "SELECT * FROM usuarios WHERE email = :email AND estado = '1' LIMIT 1";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute(['email' => $email]);
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-            if ($user && isset($user['password']) && password_verify($password, $user['password'])) {
+            $user = $authService->autenticar($email, $password);
+            if ($user) {
                 $_SESSION['usuario'] = $user['nombres'];
                 $_SESSION['id_usuario'] = $user['id_usuario'];
                 $_SESSION['email'] = $user['email'];
-                $_SESSION['cargos'] = $user['cargos'];
+                $_SESSION['cargos'] = $user['cargos'] ?? null;
                 header('Location: '.APP_URL.'/public/');
                 exit();
             } else {
@@ -33,6 +26,11 @@ class login {
                 header('Location: '.APP_URL.'/public/login');
                 exit();
             }
+        } catch (PDOException $e) {
+            error_log('Error en la autenticación: ' . $e->getMessage());
+            $_SESSION['login_error'] = 'Ocurrió un error al procesar la solicitud. Inténtelo de nuevo más tarde.';
+            header('Location: '.APP_URL.'/public/login');
+            exit();
         }
     }
     // Puedes agregar aquí el método logout si lo necesitas

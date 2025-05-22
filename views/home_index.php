@@ -1,7 +1,7 @@
 <?php
 // Quita la carga de config.php aquí, ya que el controlador ya lo incluye
 // require_once dirname(__DIR__) . '/../config/config.php';
-include("layout/parte1.php");
+include("layout/parte2.php");
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -26,5 +26,5 @@ include("layout/parte1.php");
 <!-- /.content-wrapper -->
 
 <?php
-  include("layout/parte2.php");
+  include("layout/parte1.php");
 ?>

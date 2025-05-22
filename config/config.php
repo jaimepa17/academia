@@ -23,6 +23,10 @@ try{
 // require_once de la clase DB
 require_once __DIR__ . '/../app/database/DB.php';
 
+// Cargar helpers y clases core de forma global
+require_once __DIR__ . '/../app/core/BaseController.php';
+require_once __DIR__ . '/../app/core/helpers.php';
+
 date_default_timezone_set('America/Managua'); // Establece tu zona horaria
 $fechaHora = date('Y-m-d H:i:s'); 
 
