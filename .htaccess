@@ -1,13 +1,6 @@
 RewriteEngine On
 
-# Redirige todo excepto carpetas y archivos existentes hacia /public
-RewriteCond %{REQUEST_URI} !^/public/
-RewriteCond %{REQUEST_URI} !^/app/
-RewriteCond %{REQUEST_URI} !^/config/
-RewriteCond %{REQUEST_URI} !^/controllers/
-RewriteCond %{REQUEST_URI} !^/database/
-RewriteCond %{REQUEST_URI} !^/views/
-RewriteCond %{REQUEST_URI} !^/routes.php
+# Redirige todo excepto archivos y carpetas existentes hacia routes/routes_handle.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ public/$1 [L]
+RewriteRule ^(.*)$ routes/routes_handle.php?url=$1 [QSA,L]

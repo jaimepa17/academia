@@ -4,11 +4,11 @@ class DB {
     private static $pdo = null;
     private function __construct() {}
     private function __clone() {}
-    private function __wakeup() {}
+    public function __wakeup() {}
 
     public static function getInstance() {
         if (self::$pdo === null) {
-            $servidor = "pgsql:dbname=".BD.";host=".SERVIDOR;
+            $servidor = "mysql:dbname=".BD.";host=".SERVIDOR;
             self::$pdo = new PDO($servidor, USUARIO, PASSWORD);
         }
         return self::$pdo;

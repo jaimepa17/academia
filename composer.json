@@ -1,0 +1,8 @@
+{
+    "require": {
+        "mustache/mustache": "^2.14",
+        "kint-php/kint": "^6.0",
+        "phpoffice/phpspreadsheet": "^4.2",
+        "dompdf/dompdf": "^3.1"
+    }
+}

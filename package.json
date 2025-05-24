@@ -1,0 +1,24 @@
+{
+  "name": "academia",
+  "version": "1.0.0",
+  "description": "proyecto",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tailwindcss -i ./public/css/tailwind.css -o ./public/css/tailwind.build.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaimepa17/academia.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaimepa17/academia/issues"
+  },
+  "homepage": "https://github.com/jaimepa17/academia#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.1.7"
+  }
+}

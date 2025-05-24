@@ -1,30 +1,42 @@
 <?php
-// Quita la carga de config.php aquí, ya que el controlador ya lo incluye
-// require_once dirname(__DIR__) . '/../config/config.php';
 include("layout/parte2.php");
 ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+  <!-- Header -->
+  <header class="text-center py-5 bg-primary text-white">
+    <h1>Bienvenido a Academia</h1>
+    <p>Tu plataforma de aprendizaje en línea</p>
+  </header>
+
   <!-- Main content -->
-  <br>
   <div class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="container">
-          <h1 class="text-center mt-4">Vista Principal</h1>
-          <?php if(isset($_SESSION['usuario'])): ?>
-            <h3 class="text-center" style="color:#2575fc;">Bienvenido, <?= htmlspecialchars($_SESSION['usuario']) ?>!</h3>
-          <?php endif; ?>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card shadow">
+            <div class="card-body text-center">
+              <h2 class="card-title">¡Hola, Usuario!</h2>
+              <p class="card-text">Estamos encantados de tenerte aquí. Explora nuestros cursos y comienza a aprender hoy mismo.</p>
+              <hr>
+              <h4>Datos de Prueba</h4>
+              <ul class="list-unstyled">
+                <li><strong>Usuario:</strong> prueba@academia.com</li>
+                <li><strong>Contraseña:</strong> 123456</li>
+              </ul>
+              <a href="#" class="btn btn-primary mt-3">Iniciar Sesión</a>
+              <a href="#" class="btn btn-secondary mt-3">Registrarse</a>
+            </div>
+          </div>
         </div>
       </div>
-      <!-- /.row -->
-    </div><!-- /.container-fluid -->
+    </div>
   </div>
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 
 <?php
-  include("layout/parte1.php");
+include("layout/parte1.php");
 ?>

@@ -1,16 +1,16 @@
 <?php
 
 define('SERVIDOR','localhost');
-define('USUARIO','postgres');
-define('PASSWORD','123');
-define('BD','sisgestionescolar');
+define('USUARIO','root'); // Cambia si tu usuario de MySQL es diferente
+define('PASSWORD','');    // Cambia si tu contraseña de MySQL es diferente
+define('BD','sisacademia');
 
 define('APP_NAME',' Académico');
 
 define('APP_URL','http://localhost/academia');
 define('KEY_API_MAPS','');
 
-$servidor = "pgsql:dbname=".BD.";host=".SERVIDOR;
+$servidor = "mysql:dbname=".BD.";host=".SERVIDOR;
 
 try{
     $pdo = new PDO($servidor, USUARIO, PASSWORD);

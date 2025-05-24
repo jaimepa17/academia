@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {{{head}}}
+    <meta charset="UTF-8">
+    <title>Vista Test Mustache</title>
+    <script>
+    tailwind.config = {
+        darkMode: 'class',
+        // ...otras opciones si quieres
+    }
+    </script>
+   
+</head>
+<body class="min-h-screen bg-gray-100 dark:bg-gray-900 dark:text-gray-200 font-sans p-6 transition-colors duration-300">
+    <div class="max-w-3xl mx-auto">
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="text-3xl font-extrabold text-gray-800 dark:text-gray-100">Vista Test (Mustache .mst)</h1>
+            <!-- Switch moderno para dark mode -->
+            <label class="flex items-center cursor-pointer select-none">
+                <span class="mr-2 text-sm text-gray-700 dark:text-gray-300">Modo oscuro</span>
+                <div class="relative">
+                    <input type="checkbox" id="btnToggleDarkMode" class="peer absolute opacity-0 w-0 h-0">
+                    <div class="w-10 h-6 bg-gray-300 dark:bg-gray-700 rounded-full transition-colors peer-checked:bg-gray-700"></div>
+                    <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-300 peer-checked:translate-x-4"></div>
+                </div>
+            </label>
+        </div>
+        <p class="text-gray-700 dark:text-gray-300 mb-6 text-lg">Valor recibido por URL: <strong class="text-blue-600 dark:text-blue-400">{{valor}}</strong></p>
+        <div class="flex gap-4 mb-6">
+            <button id="btnExportarExcel" type="button" class="bg-green-500 dark:bg-green-700 text-white px-5 py-2 rounded-lg shadow hover:bg-green-600 dark:hover:bg-green-800 transition font-semibold flex items-center gap-2">
+                <i class="fas fa-file-excel"></i> Exportar tabla a Excel
+            </button>
+        </div>
+        <div class="mt-6 overflow-x-auto rounded-lg shadow-lg">
+            <table id="tablatest" class="min-w-full bg-white dark:bg-gray-800 rounded-lg overflow-hidden">
+                <thead class="bg-blue-500 dark:bg-blue-700 text-white sticky top-0">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-lg font-bold">#</th>
+                        <th class="px-6 py-3 text-left text-lg font-bold">Valor</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                    {{#datos}}
+                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <td class="px-6 py-3">{{numero}}</td>
+                        <td class="px-6 py-3">{{valor}}</td>
+                    </tr>
+                    {{/datos}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
