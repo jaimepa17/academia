@@ -94,6 +94,14 @@
 
 ---
 
+## 📋 Historial de Versiones
+
+| Versión  | Fecha         | Día      | Descripción breve                                 |
+|----------|--------------|----------|---------------------------------------------------|
+| v1.2.0   | 24/05/2025    | Sábado   | Refactorización de header/footer, recursos globales, rutas locales, mejoras Mustache y documentación |
+
+---
+
 ## 🚀 Cambios y Mejoras Recientes
 
 ### v1.2.0 - 24/05/2025 (sábado)
@@ -115,11 +123,5 @@
   - El README y los comentarios en los archivos clave explican cómo agregar recursos globales, por-vista y cómo estructurar las plantillas para máxima flexibilidad.
 
 ---
-
-## 📋 Historial de Versiones
-
-| Versión  | Fecha         | Día      | Descripción breve                                 |
-|----------|--------------|----------|---------------------------------------------------|
-| v1.2.0   | 24/05/2025    | Sábado   | Refactorización de header/footer, recursos globales, rutas locales, mejoras Mustache y documentación |
 
 ¿Dudas o sugerencias? Consulta la documentación interna o contacta al responsable del proyecto.
