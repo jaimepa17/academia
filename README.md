@@ -94,4 +94,32 @@
 
 ---
 
+## 🚀 Cambios y Mejoras Recientes
+
+### v1.2.0 - 24/05/2025 (sábado)
+
+- **Redirección inteligente en `index.php`:** Ahora redirige automáticamente a la ruta `/home/index` usando la constante `APP_URL` para compatibilidad con subcarpetas o dominios personalizados.
+- **Sistema de header y footer flexible:** Puedes definir `header` y `footer` en los metadatos de cada vista (`views_meta.php`) para que se inyecten automáticamente antes y después del contenido principal, sin necesidad de incluirlos manualmente en la plantilla.
+- **Header y footer ultra responsivos:**
+  - Header y footer rediseñados con utilidades Bootstrap y CSS personalizado para máxima responsividad y compacidad.
+  - Footer ultra compacto, todo en una sola línea visual, con logo, enlaces y redes sociales alineados y centrados.
+- **Bootstrap y FontAwesome globales:**
+  - Bootstrap y FontAwesome se cargan globalmente desde rutas locales (`/public/plugins/bootstrap/...`) definidas en `_global` de `views_meta.php`.
+  - Ya no dependes del CDN para estos recursos.
+- **Logo responsivo:** El logo del header se adapta automáticamente a cualquier tamaño de pantalla.
+- **Sistema de rutas y renderizado centralizado:**
+  - El acceso a `/index.php` redirige al controlador Home y su acción index, aprovechando el sistema de rutas y renderizado universal.
+- **Buenas prácticas Mustache:**
+  - No se debe incluir archivos `.mst` directamente con `include` en PHP. Siempre renderiza con el motor Mustache o el controlador.
+- **Documentación y ejemplos mejorados:**
+  - El README y los comentarios en los archivos clave explican cómo agregar recursos globales, por-vista y cómo estructurar las plantillas para máxima flexibilidad.
+
+---
+
+## 📋 Historial de Versiones
+
+| Versión  | Fecha         | Día      | Descripción breve                                 |
+|----------|--------------|----------|---------------------------------------------------|
+| v1.2.0   | 24/05/2025    | Sábado   | Refactorización de header/footer, recursos globales, rutas locales, mejoras Mustache y documentación |
+
 ¿Dudas o sugerencias? Consulta la documentación interna o contacta al responsable del proyecto.

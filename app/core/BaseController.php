@@ -34,13 +34,15 @@ class BaseController {
         $ts = array_merge($globalMeta['ts'] ?? [], $metadatos['ts'] ?? []);
         $partials = array_merge($globalMeta['partials'] ?? [], $metadatos['partials'] ?? []);
         $viewFile = $metadatos['view'] ?? null;
-        // Incluir parciales antes de la vista principal (solo para .php)
-        foreach ($partials as $partial) {
-            $partialPath = dirname(__DIR__, 2) . '/views/' . $partial;
-            if (file_exists($partialPath)) {
-                include $partialPath;
+
+        // NUEVO: Renderizar header si está definido
+        if (!empty($metadatos['header'])) {
+            $headerPath = dirname(__DIR__, 2) . '/views/' . ltrim($metadatos['header'], '/');
+            if (file_exists($headerPath)) {
+                include $headerPath;
             }
         }
+
         // Determinar la ruta y extensión de la vista
         if ($viewFile) {
             $viewPath = dirname(__DIR__, 2) . '/views/' . ltrim($viewFile, '/');
@@ -108,6 +110,7 @@ class BaseController {
             ]);
             // Inyectar el head en la variable especial {{head}}
             $data['head'] = $head;
+            // Renderizar el contenido principal
             echo $mustache->render(str_replace(['.mst', '.mustache'], '', ltrim($viewFile ?: $vista, '/')), $data);
         } elseif ($ext === 'php') {
             // PHP clásico
@@ -116,6 +119,14 @@ class BaseController {
             include $viewPath;
         } else {
             echo "<b>Vista no encontrada o extensión no soportada:</b> $viewPath";
+        }
+
+        // NUEVO: Renderizar footer si está definido
+        if (!empty($metadatos['footer'])) {
+            $footerPath = dirname(__DIR__, 2) . '/views/' . ltrim($metadatos['footer'], '/');
+            if (file_exists($footerPath)) {
+                include $footerPath;
+            }
         }
     }
 

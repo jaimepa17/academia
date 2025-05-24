@@ -7,7 +7,6 @@
     <script>
     tailwind.config = {
         darkMode: 'class',
-        // ...otras opciones si quieres
     }
     </script>
    

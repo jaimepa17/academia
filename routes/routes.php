@@ -8,7 +8,6 @@
 
 $routes = [
     // Ruta principal
-    'home' => ['controller' => 'home', 'action' => 'index'],
 
     // Autenticación
     'login' => ['controller' => 'login', 'action' => 'index'],
