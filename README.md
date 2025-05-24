@@ -1,6 +1,3 @@
-# academia_proyect
-proyecto
-
 # Documentación del Proyecto Academia
 
 ## Estructura de Carpetas y Archivos
