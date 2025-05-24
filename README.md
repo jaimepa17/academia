@@ -4,6 +4,8 @@
 
 ## 📁 Estructura de Carpetas y Archivos
 
+### V1.0.0 - 20/05/2025 (martes)
+
 - **public/**
   - `index.php`: Entrada principal. Redirige todas las peticiones al manejador de rutas.
   - **js/**: Scripts globales y por-vista (ej: `views/test/index.js`).
@@ -98,7 +100,9 @@
 
 | Versión  | Fecha         | Día      | Descripción breve                                 |
 |----------|--------------|----------|---------------------------------------------------|
+| v1.0.0   | 20/05/2025    | Martes   | Sistema de rutas centralizado, metadatos por vista, renderizador universal, integración Mustache, estructura base y documentación inicial |
 | v1.2.0   | 24/05/2025    | Sábado   | Refactorización de header/footer, recursos globales, rutas locales, mejoras Mustache y documentación |
+
 
 ---
 
