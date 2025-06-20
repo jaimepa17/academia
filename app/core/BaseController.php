@@ -5,6 +5,7 @@ require_once __DIR__ . '/../database/DB.php';
  * Clase base para todos los controladores
  * @property DB $db Instancia de la clase DB para acceso a la base de datos
  */
+
 class BaseController {
     /** @var DB */
     protected $db;
@@ -128,17 +129,5 @@ class BaseController {
                 include $footerPath;
             }
         }
-    }
-
-    // Renderizador usando Mustache con extensión .mst
-    protected function renderMustache($template, $data = []) {
-        require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
-        $mustache = new \Mustache_Engine([
-            'loader' => new \Mustache_Loader_FilesystemLoader(
-                dirname(__DIR__, 2) . '/views',
-                ['extension' => '.mst']
-            )
-        ]);
-        echo $mustache->render($template, $data);
     }
 }

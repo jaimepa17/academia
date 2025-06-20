@@ -21,10 +21,10 @@ return [
             'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js',
             'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css'
         ],
-        'ts' => [],
-        'partials' => [
-            // Ejemplo: 'layout/header.php',
-        ]
+        // 'ts' => [],
+        // 'partials' => [
+        //     // Ejemplo: 'layout/header.php',
+        // ]
     ],
     // Ejemplo para home/index
     'home/index' => [
@@ -47,12 +47,9 @@ return [
     // Metadatos para la vista de prueba
     'test/test' => [
         'view' => 'test/index.mst',
-        'css' => [],
         'js' => [
             '/public/views/test/index.js'
         ],
-        'ts' => [],
-        'partials' => []
     ],
     // Puedes agregar más vistas aquí
 ];

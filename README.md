@@ -1,56 +1,26 @@
 <!--
-# 📚 Documentación del Proyecto Academia
+# 📚 Documentación Técnica — Academia
 -->
 
 ## 📁 Estructura de Carpetas y Archivos
 
-### V1.0.0 - 20/05/2025 (martes)
+El proyecto sigue una estructura modular y escalable, separando claramente la lógica de negocio, vistas, recursos públicos y configuración.
 
-- **public/**
-  - `index.php`: Entrada principal. Redirige todas las peticiones al manejador de rutas.
-  - **js/**: Scripts globales y por-vista (ej: `views/test/index.js`).
-  - **plugins/**: Librerías externas (Bootstrap, FontAwesome, etc).
-  - **views/**: Recursos JS/CSS organizados por vista.
-
-- **routes/**
-  - `routes.php`: Rutas personalizadas del sistema.
-  - `routes_handle.php`: Manejador central de rutas. Incluye fallback dinámico para rutas tipo `/controlador/accion/param`.
-
-- **controllers/**
-  - Controladores de la aplicación. Extienden de `BaseController` y acceden a la base de datos y utilidades globales.
-
-- **app/core/**
-  - `BaseController.php`: Renderizador universal de vistas (PHP/Mustache), inyección automática de recursos globales y por-vista, soporte para metadatos desde `views_meta.php`.
-  - `DB.php`: Singleton para la conexión a la base de datos.
-  - `ModelFactory.php`: Patrón Factory para instanciar modelos.
-  - `UsuarioRepository.php`: Patrón Repository para acceso a datos de usuarios.
-  - `AuthService.php`: Patrón Service para lógica de autenticación.
-  - `helpers.php`: Funciones globales de ayuda (como dd, debuger).
-
-- **config/**
-  - `config.php`: Configuración global del sistema (constantes, conexión, helpers).
-  - `views_meta.php`: Metadatos de recursos por vista. Permite definir CSS, JS, TS, parciales y vista principal para cada ruta. Soporta recursos globales (`_global`) y bloques inline para configuración especial (ej. Tailwind CDN).
-
-- **database/**
-  - `migrations.sql`: Script para crear tablas (migraciones).
-  - `seeders.sql`: Script para insertar datos iniciales (seeders).
-  - `init_sisgestionescolar.sql`: Orquesta la ejecución de migraciones y seeders.
-
-- **models/**
-  - Modelos de la aplicación (pueden ser instanciados con ModelFactory).
-
-- **views/**
-  - Vistas del sistema (HTML/PHP/Mustache), organizadas por módulo.
-  - Soporta plantillas Mustache (`.mst`) y PHP clásico.
+- **public/** — Archivos accesibles públicamente (CSS, JS, imágenes, plugins externos).
+- **routes/** — Definición y manejo centralizado de rutas amigables.
+- **controllers/** — Controladores principales, cada uno extiende de `BaseController`.
+- **app/core/** — Núcleo del sistema: renderizador universal, helpers, conexión DB.
+- **config/** — Configuración global y metadatos de recursos por vista.
+- **database/** — Scripts de migración y seeders.
+- **models/** — Modelos de datos.
+- **views/** — Vistas Mustache (`.mst`) y PHP, organizadas por módulo.
 
 ---
 
-## 🏗️ Patrones de Diseño Implementados
+## 🏗️ Patrones de Diseño Utilizados
 
-- **Singleton:** En `DB.php` para asegurar una sola instancia de conexión a la base de datos.
-- **Factory:** En `ModelFactory.php` para instanciar modelos dinámicamente.
-- **Repository:** En `UsuarioRepository.php` para centralizar el acceso a datos de usuarios.
-- **Service:** En `AuthService.php` para lógica de autenticación y procesos de negocio.
+- **MVC clásico:** Separación clara entre Modelos, Vistas y Controladores.
+- **Singleton:** En `DB.php` para asegurar una única instancia de conexión a la base de datos.
 
 ---
 
@@ -71,8 +41,8 @@
 - **Metadatos por vista:** Define recursos (CSS, JS, TS, parciales, vista principal) en `config/views_meta.php`.
 - **Recursos globales:** Usa la clave `_global` en `views_meta.php` para recursos presentes en todas las vistas.
 - **Inyección automática:** El renderizador une recursos globales y por-vista, evitando duplicidad y facilitando la escalabilidad.
-- **Soporte para Mustache:** Puedes usar plantillas `.mst` con la variable especial `{{head}}` para inyectar recursos.
-- **Soporte para Tailwind, Bootstrap, FontAwesome:** Integración automática desde los metadatos globales.
+- **Soporte para Mustache:** Plantillas `.mst` con la variable especial `{{head}}` para inyectar recursos.
+- **Integración de utilidades modernas:** Tailwind, Bootstrap, FontAwesome y otros plugins desde los metadatos globales.
 - **Modo oscuro:** Implementado con Tailwind y JS, persistente en localStorage.
 - **Exportar a Excel/PDF:** Utilidades integradas desde PHP y JS.
 
@@ -81,18 +51,72 @@
 ## 💡 Notas y Recomendaciones
 
 - **Configuración de Tailwind CDN:**
-  - El bloque `<script>tailwind.config = {...}</script>` debe escribirse manualmente en la plantilla para que el CDN lo reconozca. No funciona si se inyecta dinámicamente desde PHP (limitación del CDN).
+  - El bloque `<script>tailwind.config = {...}</script>` debe escribirse manualmente en la plantilla para que el CDN lo reconozca.
   - Ver documentación oficial: https://tailwindcss.com/docs/installation/play-cdn#configuring-tailwind-via-script-tag
-
 - **Recursos globales:**
   - Usa `_global` en `views_meta.php` para definir recursos presentes en todas las vistas.
   - Usa bloques `inline:` para scripts inline especiales.
-
 - **Rutas:**
   - Puedes definir rutas personalizadas en `routes.php` o usar el fallback dinámico para mayor flexibilidad.
-
 - **Escalabilidad:**
   - El sistema está preparado para crecer modularmente, permitiendo agregar nuevos módulos, recursos y utilidades sin duplicar código.
+
+---
+
+## 🧑‍💻 Uso del BaseController
+
+El `BaseController` es la clase base para todos los controladores del sistema. Proporciona:
+
+- Acceso a la base de datos mediante `$this->db` (instancia singleton de DB).
+- El método `rendervista($vista, $data = [], $metadatos = null)` para renderizar vistas Mustache o PHP, inyectando automáticamente recursos globales y por-vista definidos en `config/views_meta.php`.
+- Soporte para inyección de header/footer automáticos, recursos globales, parciales y variables de datos.
+
+**Ejemplo de uso en un controlador:**
+
+```php
+class HomeController extends BaseController {
+    public function index() {
+        $data = ['usuario' => 'Juan'];
+        $this->rendervista('home/index', $data);
+    }
+}
+```
+
+---
+
+## 🛠️ Uso de Helpers
+
+Los helpers son funciones globales ubicadas en `app/core/helpers.php` que facilitan tareas comunes como:
+
+- Depuración (`dd($var)`), impresión de variables, formateo de fechas, etc.
+- Puedes agregar tus propios helpers según las necesidades del proyecto.
+
+**Ejemplo:**
+
+```php
+dd($miVariable); // Detiene la ejecución y muestra el contenido de la variable
+```
+
+---
+
+## 🕹️ Uso de Controladores
+
+- Todos los controladores deben extender de `BaseController` para acceder a la base de datos y utilidades globales.
+- Los métodos públicos de los controladores corresponden a las acciones accesibles por URL (ej: `/home/index`).
+- Utiliza el método `rendervista` para mostrar la vista correspondiente y pasar datos.
+
+**Estructura típica de un controlador:**
+
+```php
+class LoginController extends BaseController {
+    public function index() {
+        $this->rendervista('login/index');
+    }
+    public function autenticar() {
+        // Lógica de autenticación
+    }
+}
+```
 
 ---
 
